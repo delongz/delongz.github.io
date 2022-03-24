@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang='zh-CN'>
+
+<head>
+  <meta name="generator" content="Hexo 6.1.0">
+  <meta charset="utf-8">
+  
+
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  <link rel='dns-prefetch' href='https://cdn.jsdelivr.net'>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" content="#f8f8f8">
+  <title>javaScript面经 - Crazy Blog</title>
+
+  
+    <meta name="description" content="一.引用方法1231.行内引入2.内部引入3.外部引入  注意：121.不推荐使用行内行内引入和内部引入,因为浏览器解析顺序缘故，如果解析到死循环的js代码，会导致页面卡住。2.建议在onload事件之后再解析js代码  二.JS基本类型12数据类型：String类型，Number类型，Boolean类型，null，underfined，Symbol类型引用类型：Object类型，function">
+<meta property="og:type" content="article">
+<meta property="og:title" content="javaScript面经">
+<meta property="og:url" content="https://delongz.github.io/2022/03/24/JavaScript%E9%9D%A2%E7%BB%8F/index.html">
+<meta property="og:site_name" content="Crazy Blog">
+<meta property="og:description" content="一.引用方法1231.行内引入2.内部引入3.外部引入  注意：121.不推荐使用行内行内引入和内部引入,因为浏览器解析顺序缘故，如果解析到死循环的js代码，会导致页面卡住。2.建议在onload事件之后再解析js代码  二.JS基本类型12数据类型：String类型，Number类型，Boolean类型，null，underfined，Symbol类型引用类型：Object类型，function">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/26761609/1647925452967-58129c68-77b6-4389-8f5f-938b088790ba.png#clientId=u7071b8a4-a5b2-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=408&id=ue403b5eb&margin=%5Bobject%20Object%5D&originHeight=480&originWidth=640&originalType=url&ratio=1&rotation=0&showTitle=false&status=done&style=none&taskId=ud0f63657-7f8b-4487-886f-ecd42a80b48&title=&width=544">
+<meta property="article:published_time" content="2022-03-24T07:38:21.781Z">
+<meta property="article:modified_time" content="2022-03-24T07:38:53.330Z">
+<meta property="article:author" content="delonz">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.nlark.com/yuque/0/2022/png/26761609/1647925452967-58129c68-77b6-4389-8f5f-938b088790ba.png#clientId=u7071b8a4-a5b2-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=408&id=ue403b5eb&margin=%5Bobject%20Object%5D&originHeight=480&originWidth=640&originalType=url&ratio=1&rotation=0&showTitle=false&status=done&style=none&taskId=ud0f63657-7f8b-4487-886f-ecd42a80b48&title=&width=544">
+  
+  
+
+  <!-- feed -->
+  
+
+  
+    
+<link rel="stylesheet" href="/css/main.css">
+
+  
+
+  
+
+  
+</head>
+
+<body>
+  
+
+
+  <div class='l_body' id='start'>
+    <aside class='l_left' layout='post'>
+    
+
+
+<header class="header">
+
+<div class="logo-wrap"><a class="title" href="/"><div class="main">Crazy Blog</div></a></div>
+<nav class="menu dis-select"><a class="nav-item active" href="/">文章</a><a class="nav-item" href="/wiki/">项目</a><a class="nav-item" href="/notes/">笔记</a><a class="nav-item" href="/more/">更多</a></nav></header>
+
+<div class="widgets">
+
+<div class="widget-wrap single" id="toc"><div class="widget-header cap dis-select"><span class="name">本文目录</span></div><div class="widget-body fs14"><div class="doc-tree active"><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80-%E5%BC%95%E7%94%A8%E6%96%B9%E6%B3%95"><span class="toc-text">一.引用方法</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F%EF%BC%9A"><span class="toc-text">注意：</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8C-JS%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B"><span class="toc-text">二.JS基本类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%89-%E6%95%B0%E7%BB%84%E6%93%8D%E4%BD%9C"><span class="toc-text">三.数组操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%9B-JS%E4%B8%AD%E6%9C%89%E5%93%AA%E4%BA%9B%E5%86%85%E7%BD%AE%E5%AF%B9%E8%B1%A1"><span class="toc-text">四.JS中有哪些内置对象</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#GET%E8%AF%B7%E6%B1%82%E5%92%8CPOST%E8%AF%B7%E6%B1%82%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">GET请求和POST请求的区别</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%AD-Get%E8%AF%B7%E6%B1%82%E4%BC%A0%E5%8F%82%E9%95%BF%E5%BA%A6%E7%9A%84%E8%AF%AF%E5%8C%BA"><span class="toc-text">六.Get请求传参长度的误区</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%83-%E9%97%AD%E5%8C%85"><span class="toc-text">七.闭包</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%97%AD%E5%8C%85%E7%9A%84%E7%89%B9%E5%BE%81"><span class="toc-text">闭包的特征</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%97%AD%E5%8C%85%E7%9A%84%E7%90%86%E8%A7%A3"><span class="toc-text">闭包的理解</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%97%AD%E5%8C%85%E7%9A%84%E7%BB%8F%E5%85%B8%E9%97%AE%E9%A2%98"><span class="toc-text">闭包的经典问题</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%EF%BC%9A"><span class="toc-text">解决方案：</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%AB-%E5%87%BD%E6%95%B0%E7%9A%84%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81"><span class="toc-text">八.函数的防抖与节流</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B9%9D-JS%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%8F%8A%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE"><span class="toc-text">九.JS作用域及作用域链</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8D%81-%E5%8E%9F%E5%9E%8B%E5%92%8C%E5%8E%9F%E5%9E%8B%E9%93%BE"><span class="toc-text">十.原型和原型链 ***</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8D%81%E4%B8%80-%E7%BB%84%E4%BB%B6%E5%8C%96%E5%92%8C%E6%A8%A1%E5%9D%97%E5%8C%96"><span class="toc-text">十一.组件化和模块化</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%81%E4%BA%8C-%E5%9B%BE%E7%89%87%E7%9A%84%E9%A2%84%E5%8A%A0%E8%BD%BD%E5%92%8C%E6%87%92%E5%8A%A0%E8%BD%BD"><span class="toc-text">十二.图片的预加载和懒加载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%81%E4%B8%89-mouseover%E5%92%8Cmouseenter"><span class="toc-text">十三.mouseover和mouseenter</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%81%E5%9B%9B-%E5%9F%BA%E6%9C%AC%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%EF%BC%8C%E4%BB%A5%E5%8F%8A%E5%80%BC%E7%B1%BB%E5%9E%8B%E5%92%8C%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B"><span class="toc-text">十四.基本的数据类型，以及值类型和引用类型</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%80%BC%E7%B1%BB%E5%9E%8B%E7%9A%84%E8%B5%8B%E5%80%BC%E5%8F%98%E5%8A%A8%E8%BF%87%E7%A8%8B%EF%BC%9A"><span class="toc-text">值类型的赋值变动过程：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B%E8%B5%8B%E5%80%BC%E5%8F%98%E5%8A%A8%E8%BF%87%E7%A8%8B%EF%BC%9A"><span class="toc-text">引用类型赋值变动过程：</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%88%A4%E6%96%AD"><span class="toc-text">数据类型的判断</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%81%E4%BA%94-Promise"><span class="toc-text">十五.Promise</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E5%9B%9E%E8%B0%83%E5%9C%B0%E7%8B%B1%E9%97%AE%E9%A2%98"><span class="toc-text">解决回调地狱问题</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%81%E5%85%AD-%E6%95%B0%E7%BB%84%E5%8E%BB%E9%87%8D"><span class="toc-text">十六.数组去重</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%81%E4%B8%83-%E5%88%9B%E5%BB%BA%E5%87%BD%E6%95%B0%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E6%B3%95"><span class="toc-text">十七.创建函数的几种方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%81%E5%85%AB-%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E6%B3%95"><span class="toc-text">十八.创建对象的几种方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%81%E4%B9%9D-JavaScript%E5%8E%9F%E7%94%9F%E5%AF%B9%E8%B1%A1%E3%80%81%E5%86%85%E7%BD%AE%E5%AF%B9%E8%B1%A1%E3%80%81%E5%AE%BF%E4%B8%BB%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="toc-text">十九.JavaScript原生对象、内置对象、宿主对象的关系</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E5%8D%81-%E5%A4%9A%E7%BB%B4%E6%95%B0%E7%BB%84%E9%99%8D%E7%BB%B4%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-text">二十.多维数组降维的方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E5%8D%81%E4%B8%80-%E5%88%A4%E6%96%AD%E4%B8%A4%E4%B8%AA%E5%AF%B9%E8%B1%A1%E7%9B%B8%E7%AD%89"><span class="toc-text">二十一.判断两个对象相等</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E5%8D%81%E4%BA%8C-JavaScript%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6%E7%9A%84%E7%90%86%E8%A7%A3"><span class="toc-text">二十二.JavaScript垃圾回收机制的理解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ES6%E6%96%B0%E7%89%B9%E6%80%A7"><span class="toc-text">ES6新特性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#web%E5%AD%98%E5%82%A8"><span class="toc-text">web存储</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HTTP%E7%8A%B6%E6%80%81%E7%A0%81"><span class="toc-text">HTTP状态码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9this%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%90%86%E8%A7%A3"><span class="toc-text">对this对象的理解</span></a></div></div></div>
+
+
+</div>
+
+
+    </aside>
+    <div class='l_main'>
+      
+
+      
+
+
+<div class="bread-nav fs12"><div id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a><span class="sep"></span><a class="cap breadcrumb" href="/">文章</a></div><div id="post-meta">发布于&nbsp;<time datetime="2022-03-24T07:38:21.781Z">2022-03-24</time></div></div>
+
+<article class='content md post'>
+<h1 class="article-title"><span>javaScript面经</span></h1>
+<h4 id="一-引用方法"><a href="#一-引用方法" class="headerlink" title="一.引用方法"></a>一.引用方法</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1.行内引入</span><br><span class="line">2.内部引入</span><br><span class="line">3.外部引入</span><br></pre></td></tr></table></figure>
+
+<h5 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1.不推荐使用行内行内引入和内部引入,因为浏览器解析顺序缘故，如果解析到死循环的js代码，会导致页面卡住。</span><br><span class="line">2.建议在onload事件之后再解析js代码</span><br></pre></td></tr></table></figure>
+
+<h4 id="二-JS基本类型"><a href="#二-JS基本类型" class="headerlink" title="二.JS基本类型"></a>二.JS基本类型</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">数据类型：String类型，Number类型，Boolean类型，null，underfined，Symbol类型</span><br><span class="line">引用类型：Object类型，function类型</span><br></pre></td></tr></table></figure>
+
+<h4 id="三-数组操作"><a href="#三-数组操作" class="headerlink" title="三.数组操作"></a>三.数组操作</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">map:  遍历数组，重新组成新数组</span><br><span class="line">forEach:  无法break，可以在try/catch中使用throw new error停止</span><br><span class="line">some:  有一项为true，则整体为true</span><br><span class="line">every:  每一项为false，则整体为false	</span><br><span class="line">join:  通过指定连接符生成字符串</span><br><span class="line">sort(fn)/reverse:  排序反转，改变原数组  </span><br><span class="line">push/pop:  末尾推入或弹出，改变原数组长度，返回该值</span><br><span class="line">unshift/shift:  开头添加或移除，改变原数组长度，返回该值</span><br><span class="line">filter:  过滤</span><br><span class="line">slice(start.end):  返回截断后的数组，不改变原数组</span><br><span class="line">contact:  连接数组，不影响原数组，浅拷贝</span><br><span class="line">indexOf/lastIndenOf(value,fromIndex):  查找数组项，返回对应的下标 </span><br><span class="line">reduce/reduceRight(fn(prev,cur),defaultPrev):  两两执行，prev为上次化简函数的return值，cur为当前值(从第二项开始)</span><br></pre></td></tr></table></figure>
+
+<h4 id="四-JS中有哪些内置对象"><a href="#四-JS中有哪些内置对象" class="headerlink" title="四.JS中有哪些内置对象"></a>四.JS中有哪些内置对象</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Object是所有对象的对象</span><br><span class="line">数据类型对象：Object，Number，String，Boolean，Arry</span><br><span class="line">其他对象：function，argument，Math，Date，ExpReg，Error</span><br></pre></td></tr></table></figure>
+
+<h4 id="GET请求和POST请求的区别"><a href="#GET请求和POST请求的区别" class="headerlink" title="GET请求和POST请求的区别"></a>GET请求和POST请求的区别</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">GET  类似于查找，用户获取数据，可以不用每次都从数据库中获取，也可以从缓存中获取。</span><br><span class="line">POST  一般用于添加和修改数据库中的数据，所以每次都要与数据库进行交互。</span><br></pre></td></tr></table></figure>
+
+<h4 id="六-Get请求传参长度的误区"><a href="#六-Get请求传参长度的误区" class="headerlink" title="六.Get请求传参长度的误区"></a>六.Get请求传参长度的误区</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1Http从未规定过GET和POST的长度限制</span><br><span class="line">2GET的最大长度显示是因为浏览器和web服务器对URL的限制</span><br><span class="line">3不同的的浏览器和web服务器对URL的限制最大长度不一样</span><br></pre></td></tr></table></figure>
+
+<h4 id="七-闭包"><a href="#七-闭包" class="headerlink" title="七.闭包"></a>七.闭包</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">简述：函数A里面包了一个函数B，B里面是使用了A函数的变量，那么函数B就被称为闭包</span><br><span class="line">	又或闭包就是能够读取其他函数内部变量的函数</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">A</span>(<span class="params"></span>)&#123;</span><br><span class="line">	<span class="keyword">var</span> a =<span class="number">1</span></span><br><span class="line">	<span class="keyword">function</span> <span class="title function_">B</span>(<span class="params"></span>)&#123;</span><br><span class="line">		<span class="variable language_">console</span>.<span class="title function_">log</span>(a)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="title function_">B</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="闭包的特征"><a href="#闭包的特征" class="headerlink" title="闭包的特征"></a>闭包的特征</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">函数嵌套函数</span><br><span class="line">内部函数可以引用外层的参数和变量</span><br><span class="line">闭包不会被垃圾回收机制回收</span><br></pre></td></tr></table></figure>
+
+<h5 id="闭包的理解"><a href="#闭包的理解" class="headerlink" title="闭包的理解"></a>闭包的理解</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">使用闭包是为了设计私有的方法和变量，闭包的优点是减少全局变量的污染，</span><br><span class="line">缺点是会大量占有内存，使用不当会造成内存的泄露。只有函数会产生闭包，</span><br><span class="line">只有函数会有作用域的概念。</span><br><span class="line"></span><br><span class="line">内存泄露的解决方法：在退出函数之前，及时删除。</span><br></pre></td></tr></table></figure>
+
+<h5 id="闭包的经典问题"><a href="#闭包的经典问题" class="headerlink" title="闭包的经典问题"></a>闭包的经典问题</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>, i &lt; <span class="number">3</span>, i++)&#123;</span><br><span class="line">	<span class="built_in">setTimeout</span>(<span class="function">()=&gt;</span>&#123;</span><br><span class="line">		<span class="variable language_">console</span>.<span class="title function_">log</span>(i)  <span class="comment">//3 3 3</span></span><br><span class="line">	&#125;,<span class="number">1000</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">答案：3 3 3</span><br><span class="line">解析：for循环是同步代码，先执行三步for，得到3，</span><br><span class="line">	 再执行异步代码setTimeout这时候输出i只能是3个3。</span><br></pre></td></tr></table></figure>
+
+<h5 id="解决方案："><a href="#解决方案：" class="headerlink" title="解决方案："></a>解决方案：</h5><p>1.使用let</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>, i &lt; <span class="number">3</span>, i++)&#123;</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;循环代码&#x27;</span>+ i)</span><br><span class="line">	<span class="built_in">setTimeout</span>(<span class="function">()=&gt;</span>&#123;</span><br><span class="line">		<span class="variable language_">console</span>.<span class="title function_">log</span>(i)  </span><br><span class="line">	&#125;,<span class="number">1000</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">结果：</span><br><span class="line">	循环代码<span class="number">0</span></span><br><span class="line">	循环代码<span class="number">1</span></span><br><span class="line">	循环代码<span class="number">2</span></span><br><span class="line">	<span class="number">0</span></span><br><span class="line">	<span class="number">1</span></span><br><span class="line">	<span class="number">2</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">解析：每个let和代码结合形成了块级作用域，当setTimeout打印时</span><br><span class="line">	  会寻找最近的块级作用域中的i，所以是0,1,2</span><br></pre></td></tr></table></figure>
+
+<p>2.使用立即执行函数</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>, i &lt; <span class="number">3</span>, i++)&#123;</span><br><span class="line">	(<span class="keyword">function</span>(<span class="params">i</span>)&#123;</span><br><span class="line">		<span class="built_in">setTimeout</span>(<span class="function">()=&gt;</span>&#123;</span><br><span class="line">			<span class="variable language_">console</span>.<span class="title function_">log</span>(i)</span><br><span class="line">		&#125;,<span class="number">1000</span>)</span><br><span class="line">	&#125;)(i)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="八-函数的防抖与节流"><a href="#八-函数的防抖与节流" class="headerlink" title="八.函数的防抖与节流"></a>八.函数的防抖与节流</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">非正常操作：用户会快速的操作某些事件，浏览器无法及时反应，严重会造成卡顿现象。</span><br><span class="line"></span><br><span class="line">防抖：前面的操作都被取消，只有最后一次在规定的时间之后才会触发。</span><br><span class="line">	（如果频繁操作只会执行一次）</span><br><span class="line"></span><br><span class="line">节流：在规定的间隔时间内不会重复触发回调，只有在这个时间结束后才会再次触发。</span><br><span class="line">	（把频繁触发变为少量触发,可以给浏览器充裕的事件解析代码）</span><br><span class="line"></span><br><span class="line">解决方法：</span><br><span class="line">	1.可以使用lodash解决(不要使用箭头函数)</span><br><span class="line">	节流：_.throttle(function(),time)</span><br><span class="line">	闭包：_.debounce(function(),time)</span><br><span class="line">	2.源码  闭包+setTimeout解决</span><br></pre></td></tr></table></figure>
+
+<h4 id="九-JS作用域及作用域链"><a href="#九-JS作用域及作用域链" class="headerlink" title="九.JS作用域及作用域链"></a>九.JS作用域及作用域链</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">全局作用域：</span><br><span class="line">	代码在程序的任何位置都能被访问到，window对象的内置属性都拥有全局作用域。</span><br><span class="line"></span><br><span class="line">局部作用域</span><br><span class="line">	在固定代码片段内才能被访问。</span><br><span class="line"></span><br><span class="line">  例子：</span><br><span class="line">	var a = 10,</span><br><span class="line">		b = 20;    //全局作用域</span><br><span class="line">	  function fn()&#123;</span><br><span class="line">		 var a = 100,</span><br><span class="line">			 c = 300;   //fn作用域</span><br><span class="line">	    function bar()&#123;</span><br><span class="line">	    	var a = 1000,</span><br><span class="line">	    		d = 4000;   //bar作用域</span><br><span class="line">	    &#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">作用域上下级关系，是看在哪个函数下创建的。</span><br><span class="line">   （fn作用域就是bar作用域的上级）</span><br><span class="line"></span><br><span class="line">作用域的作用：隔绝同名变量，不同作用域下同名变量不会有冲突。</span><br><span class="line"></span><br><span class="line">变量取值：在哪创建，就在那个函数作用域下取值</span><br><span class="line"></span><br><span class="line">作用域链： </span><br><span class="line">	一般情况下，会在当前函数下取值，但是如果找不到的话会向上级查找，直到全局作用域下。这个链条就是作用域链。</span><br></pre></td></tr></table></figure>
+
+<h4 id="十-原型和原型链"><a href="#十-原型和原型链" class="headerlink" title="十.原型和原型链 ***"></a>十.原型和原型链 ***</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">原型、原型链概念：</span><br><span class="line">每个对象都会在其内部初始化一个属性，这个属性就叫做prototype（原型）。当我们访问一个对象的属性时，这个属性不存在的话，就会从这个对象的prototype中寻找。这个prototype会从自己的prototype中寻找，一直找下去</span><br><span class="line"></span><br><span class="line">原型和原型链的关系</span><br><span class="line">instance.constructor.prototype = instance.__proto_</span><br><span class="line"></span><br><span class="line">特点：</span><br><span class="line">JavaScript对象是通过引用来传递的，我们创建的每个新对象实体中并没有一份属于自己的原型副本。当我们修改原型时，与之相关的对象也会继承这一改变。</span><br></pre></td></tr></table></figure>
+
+<h4 id="十一-组件化和模块化"><a href="#十一-组件化和模块化" class="headerlink" title="十一.组件化和模块化"></a>十一.组件化和模块化</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">为什么要组件化开发：</span><br><span class="line">	当代码量非常大，逻辑太多或者是同一个功能组件在许多页面都有使用。那么就需要功能拆分，封装组件，达到组件共通性，代码可读性，维护成本大大降低。</span><br><span class="line"></span><br><span class="line">组件化开发优点：</span><br><span class="line">	降低了各个系统功能的耦合性，提高了功能内部的聚合性。有利于前端工程化，降低代码的维护成本，提高开发效率。</span><br><span class="line"></span><br><span class="line">组件开发的原则：</span><br><span class="line">	专一，复用性，可配置性，标准型，可维护性。</span><br><span class="line"></span><br><span class="line">为什么要模块化开发：</span><br><span class="line">	防止代码冲突。</span><br><span class="line"></span><br><span class="line">模块化的好处：</span><br><span class="line">	避免变量污染，命名冲突；复用率高；可维护性好；方便依赖关系管理。</span><br></pre></td></tr></table></figure>
+
+<h3 id="十二-图片的预加载和懒加载"><a href="#十二-图片的预加载和懒加载" class="headerlink" title="十二.图片的预加载和懒加载"></a>十二.图片的预加载和懒加载</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">预加载：提前加载图片，用户需要时可直接从缓存中获取。</span><br><span class="line">懒加载：目的是为了服务器前端的优化，减少或延迟请求数量。</span><br></pre></td></tr></table></figure>
+
+<h3 id="十三-mouseover和mouseenter"><a href="#十三-mouseover和mouseenter" class="headerlink" title="十三.mouseover和mouseenter"></a>十三.mouseover和mouseenter</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mouseover：其元素和子元素都会触发，产生冒泡事件。 mouseout</span><br><span class="line">mouseenter：只有其元素会触发，不会产生冒泡事件。 mouseleave</span><br></pre></td></tr></table></figure>
+
+<h3 id="十四-基本的数据类型，以及值类型和引用类型"><a href="#十四-基本的数据类型，以及值类型和引用类型" class="headerlink" title="十四.基本的数据类型，以及值类型和引用类型"></a>十四.基本的数据类型，以及值类型和引用类型</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">JS中包含7中基本类型：</span><br><span class="line">	undefined，Null，String，Number，Boolean，Symbol，BigInt</span><br><span class="line">一种复杂类型：Object</span><br><span class="line"></span><br><span class="line">Symbol: 表示独一无二的值，最大的用法定义对象的唯一属性名。</span><br><span class="line">BigInt:可以表示超出int的值</span><br></pre></td></tr></table></figure>
+
+<h5 id="值类型的赋值变动过程："><a href="#值类型的赋值变动过程：" class="headerlink" title="值类型的赋值变动过程："></a>值类型的赋值变动过程：</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">let a = 100;</span><br><span class="line">let b = a;</span><br><span class="line">a = 200;</span><br><span class="line">console.log(b) //100</span><br><span class="line"></span><br><span class="line">值类型直接存储在*栈(satck)*中的简单数据段，占据空间小，被频繁使用数据。</span><br></pre></td></tr></table></figure>
+
+<h5 id="引用类型赋值变动过程："><a href="#引用类型赋值变动过程：" class="headerlink" title="引用类型赋值变动过程："></a>引用类型赋值变动过程：</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">let a = &#123;age:20&#125;;</span><br><span class="line">let b = a;</span><br><span class="line">b.age = 30;</span><br><span class="line">console.log(a.age)  //30</span><br><span class="line"></span><br><span class="line">引用类型存储在*堆(heap)*中，占据空间大，大小不固定。存放在堆中会影响程序运行。</span><br></pre></td></tr></table></figure>
+
+<h4 id="数据类型的判断"><a href="#数据类型的判断" class="headerlink" title="数据类型的判断"></a>数据类型的判断</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">typeOf 能判断所有值类型、函数，不能判断null，对象，数组的精准类型，都返回object</span><br><span class="line">	string，number，boolean，symbol，bigIng，function</span><br><span class="line"></span><br><span class="line">instanceof 能判断对象类型，不能判断基本数据类型</span><br><span class="line">	运行机制是判断在其原型链中是否能找到该类型的原型。</span><br><span class="line">	</span><br><span class="line">Object.prototype.toString.call() 		</span><br><span class="line">	所有原始数据都能判断，还有Error对象，Date对象等。</span><br><span class="line"></span><br><span class="line">常问题：如何判断Arry数组</span><br><span class="line">	arr instanceof Array;  		//true</span><br><span class="line">	isArray(arr);				//true</span><br><span class="line">	arr.__proto__ === Array.prototype;  	//true</span><br><span class="line">	Object.prototype.toString.call(arr);  	//[object Array]</span><br></pre></td></tr></table></figure>
+
+<h3 id="十五-Promise"><a href="#十五-Promise" class="headerlink" title="十五.Promise"></a>十五.Promise</h3><h4 id="解决回调地狱问题"><a href="#解决回调地狱问题" class="headerlink" title="解决回调地狱问题"></a>解决回调地狱问题</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Promise，里面保存着某个未来才会结束的事件（通常是一个异步操作）。</span><br><span class="line">Promise两大特点：</span><br><span class="line">	1.对象的状态不受外界影响</span><br><span class="line">	2.一旦改变状态，就不会再变。</span><br><span class="line">					resolved(已定型)</span><br><span class="line">		pending————&gt;fulfilled(已成功)</span><br><span class="line">		pending————&gt;rejected(已失败)</span><br><span class="line">缺点：</span><br><span class="line">	1.无法取消Promise，一旦建立就会立即执行，中途无法取消。</span><br><span class="line">	2.如果不设置回调函数，Promise内部会抛出错误。</span><br><span class="line">	3.当处于pending状态时，不知道进展在哪一阶段。</span><br></pre></td></tr></table></figure>
+
+<h3 id="十六-数组去重"><a href="#十六-数组去重" class="headerlink" title="十六.数组去重"></a>十六.数组去重</h3><h3 id="十七-创建函数的几种方法"><a href="#十七-创建函数的几种方法" class="headerlink" title="十七.创建函数的几种方法"></a>十七.创建函数的几种方法</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">函数声明</span><br><span class="line">function sum(num1,num2)&#123;return num1+num2;&#125;</span><br><span class="line"></span><br><span class="line">函数表达式</span><br><span class="line">var sum = function(num1,num2)&#123;return num1+num2;&#125;</span><br><span class="line"></span><br><span class="line">函数对象写法</span><br><span class="line">var sum = new Function(&quot;num1&quot;,&quot;num2&quot;,&quot;return num1+num2&quot;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="十八-创建对象的几种方法"><a href="#十八-创建对象的几种方法" class="headerlink" title="十八.创建对象的几种方法"></a>十八.创建对象的几种方法</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">简单创建对象</span><br><span class="line">var Cat = &#123;&#125;;</span><br><span class="line">Cat.name = &#x27;kity&#x27;;</span><br><span class="line">Cat.age = 19;</span><br><span class="line">Cat.sayHello = function()&#123;</span><br><span class="line">	alert(&#x27;Cat&#x27;+Cat.name+&#x27;age&#x27;+Cat.age)</span><br><span class="line">&#125;</span><br><span class="line">Cat.sayHello();</span><br><span class="line"></span><br><span class="line">function(函数)来模拟class</span><br><span class="line">	创建一个对象，相当于new一个类的实例（）</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="十九-JavaScript原生对象、内置对象、宿主对象的关系"><a href="#十九-JavaScript原生对象、内置对象、宿主对象的关系" class="headerlink" title="十九.JavaScript原生对象、内置对象、宿主对象的关系"></a>十九.JavaScript原生对象、内置对象、宿主对象的关系</h3><p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://cdn.nlark.com/yuque/0/2022/png/26761609/1647925452967-58129c68-77b6-4389-8f5f-938b088790ba.png#clientId=u7071b8a4-a5b2-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=408&id=ue403b5eb&margin=%5Bobject%20Object%5D&originHeight=480&originWidth=640&originalType=url&ratio=1&rotation=0&showTitle=false&status=done&style=none&taskId=ud0f63657-7f8b-4487-886f-ecd42a80b48&title=&width=544"></p>
+<h3 id="二十-多维数组降维的方法"><a href="#二十-多维数组降维的方法" class="headerlink" title="二十.多维数组降维的方法"></a>二十.多维数组降维的方法</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//使用push方法</span></span><br><span class="line"><span class="keyword">let</span> arr = [[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>],[<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>]]</span><br><span class="line">arr += <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">arr = arr.<span class="title function_">split</span>(<span class="string">&#x27;,&#x27;</span>)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(arr)   <span class="comment">// [&#x27;1&#x27;, &#x27;2&#x27;, &#x27;3&#x27;, &#x27;4&#x27;, &#x27;5&#x27;, &#x27;6&#x27;, &#x27;7&#x27;, &#x27;8&#x27;]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// reduceDimension降维/数组扁平化（递归方法）</span></span><br><span class="line">	<span class="keyword">let</span> array = [[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>],<span class="string">&#x27;4&#x27;</span>,[<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>],<span class="string">&#x27;10&#x27;</span>]</span><br><span class="line">	<span class="keyword">function</span> <span class="title function_">reduceDimension</span> (arr) &#123;</span><br><span class="line">		<span class="keyword">let</span> ret = [];</span><br><span class="line">		<span class="keyword">let</span> toArr = <span class="keyword">function</span>(<span class="params">arr</span>)&#123;</span><br><span class="line">			arr.<span class="title function_">forEach</span>( <span class="keyword">function</span>(<span class="params">item</span>) &#123;</span><br><span class="line">				<span class="comment">// 判断是否为数组</span></span><br><span class="line">				item <span class="keyword">instanceof</span> <span class="title class_">Array</span> ? <span class="title function_">toArr</span>(item) : ret.<span class="title function_">push</span>(item) </span><br><span class="line">			&#125;);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="title function_">toArr</span>(arr);</span><br><span class="line">		<span class="keyword">return</span> ret</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">reduceDimension</span>(array))   <span class="comment">//[1, 2, 3, 4, &#x27;4&#x27;, 5, 6, 7, 8, &#x27;10&#x27;]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//使用flat方法</span></span><br><span class="line"><span class="keyword">let</span> array = [[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>],<span class="string">&#x27;4&#x27;</span>,[<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>],<span class="string">&#x27;10&#x27;</span>]</span><br><span class="line">	array = array.<span class="title function_">flat</span>();</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(array)  <span class="comment">//[1, 2, 3, 4, &#x27;4&#x27;, 5, 6, 7, 8, &#x27;10&#x27;]</span></span><br></pre></td></tr></table></figure>
+<h3 id="二十一-判断两个对象相等"><a href="#二十一-判断两个对象相等" class="headerlink" title="二十一.判断两个对象相等"></a>二十一.判断两个对象相等</h3><h3 id="二十二-JavaScript垃圾回收机制的理解"><a href="#二十二-JavaScript垃圾回收机制的理解" class="headerlink" title="二十二.JavaScript垃圾回收机制的理解"></a>二十二.JavaScript垃圾回收机制的理解</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">标记清除（mark and sweep）</span><br><span class="line">	当一个变量创建时，垃圾回收器会将其标记为‘进入环境’，</span><br><span class="line">  当这个变量执行结束后，垃圾回收器会将其标记为‘离开环境’</span><br><span class="line">  垃圾回收器在开始的时候会将所有的变量进行标记，然后去掉环境中的变量，和环境中变量所引用的变量（闭包），结束后会将还在的变量进行删除。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">引用计数（reference counting）</span><br><span class="line">	记录每个值被引用的次数。如果记为0的时候就会被清除。</span><br><span class="line">  IE中使用引用计数，但是DOM和BOM都是使用标记清除，所以只要涉及DOM和BOM就会存在引用问题。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="ES6新特性"><a href="#ES6新特性" class="headerlink" title="ES6新特性"></a>ES6新特性</h3><p>let const Promise  Interator Generator  扩展运算符  module模块化  Class类  箭头函数</p>
+<h3 id="web存储"><a href="#web存储" class="headerlink" title="web存储"></a>web存储</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">cookie</span><br><span class="line">	用于浏览器与server通讯。</span><br><span class="line">	被“借用”到本地存储来的。</span><br><span class="line">	可用document.cookie = &#x27;...&#x27;进行修改</span><br><span class="line">	缺点：</span><br><span class="line">	 	存储大小限制为4kb</span><br><span class="line">	 	http请求时需要发送到服务器，增加请求数量。</span><br><span class="line">	 	只能用document.cookie=&#x27;&#x27;进行修改。</span><br><span class="line"></span><br><span class="line">localStorage与sessionStorage</span><br><span class="line">	HTML5专门为存储来设计的，最大可为5M。</span><br><span class="line">	API简单易用，setItem，getItem</span><br><span class="line">	不会随着http请求被送到服务端。</span><br><span class="line">	区别：</span><br><span class="line">		localStorage数据会永久存储，除非代码删除。</span><br><span class="line">		sessionStorage数据仅会存在当前会话，如果浏览器关闭数据就会被清除。</span><br></pre></td></tr></table></figure>
+
+<h3 id="HTTP状态码"><a href="#HTTP状态码" class="headerlink" title="HTTP状态码"></a>HTTP状态码</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">分类：</span><br><span class="line">	1xx：服务器收到请求</span><br><span class="line">	2xx：请求成功</span><br><span class="line">	3xx：重定向</span><br><span class="line">	4xx：客户端错误</span><br><span class="line">	5xx：服务端错误</span><br><span class="line"></span><br><span class="line">常见状态码：</span><br><span class="line">	200 -成功</span><br><span class="line">	301 -永久重定向（配合location，浏览器自动处理）</span><br><span class="line">	302 -临时重定向（配合location，浏览器自动处理）</span><br><span class="line">	304 -资源未被修改</span><br><span class="line">	403 -没权限</span><br><span class="line">	404 -资源未找到</span><br><span class="line">	500 -服务器错误</span><br></pre></td></tr></table></figure>
+
+<h3 id="对this对象的理解"><a href="#对this对象的理解" class="headerlink" title="对this对象的理解"></a>对this对象的理解</h3><p>ES6解构赋值<br>正则表达式</p>
+
+
+<div class="article-footer reveal fs14"><section id="license"><div class="header"><span>许可协议</span></div><div class="body"><p>本文采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">署名-非商业性使用-相同方式共享 4.0 国际</a> 许可协议，转载请注明出处。</p>
+</div></section></div>
+
+</article>
+
+<div class="related-wrap reveal" id="read-next"><section class="header cap theme"><span>接下来阅读</span></section><section class="body fs14"><a id="next" href="/2022/03/24/hello-world/">Hello World<span class="note">较早</span></a><div class="line"></div><a id="prev" href="/2022/03/24/HTML+CSS%E9%9D%A2%E7%BB%8F/">HTML+CSS面经<span class="note">较新</span></a></section></div>
+
+
+
+
+
+
+
+
+      
+<footer class="page-footer reveal fs12"><hr><div class="text"><p>本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处。</p>
+<p>本站由 <a href="https://delongz.github.io/">@delonz</a> 创建，使用 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.6.1" title="v1.6.1">Stellar</a> 作为主题。</p>
+</div></footer>
+
+      <div class='float-panel mobile-only blur' style='display:none'>
+  <button type='button' class='sidebar-toggle mobile' onclick='sidebar.toggle()'>
+    <svg class="icon" style="width: 1em; height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="15301"><path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 2.3 26.8 24.6 47.5 51.6 47.6h416.5v4z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15302"></path><path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 1.9 27.7 23.9 49.7 51.6 51.6h416.5z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15303"></path></svg>
+  </button>
+</div>
+
+    </div>
+  </div>
+  <div class='scripts'>
+    <script type="text/javascript">
+  stellar = {
+    // 懒加载 css https://github.com/filamentgroup/loadCSS
+    loadCSS: (href, before, media, attributes) => {
+      var doc = window.document;
+      var ss = doc.createElement("link");
+      var ref;
+      if (before) {
+        ref = before;
+      } else {
+        var refs = (doc.body || doc.getElementsByTagName("head")[0]).childNodes;
+        ref = refs[refs.length - 1];
+      }
+      var sheets = doc.styleSheets;
+      if (attributes) {
+        for (var attributeName in attributes) {
+          if (attributes.hasOwnProperty(attributeName)) {
+            ss.setAttribute(attributeName, attributes[attributeName]);
+          }
+        }
+      }
+      ss.rel = "stylesheet";
+      ss.href = href;
+      ss.media = "only x";
+      function ready(cb) {
+        if (doc.body) {
+          return cb();
+        }
+        setTimeout(function () {
+          ready(cb);
+        });
+      }
+      ready(function () {
+        ref.parentNode.insertBefore(ss, before ? ref : ref.nextSibling);
+      });
+      var onloadcssdefined = function (cb) {
+        var resolvedHref = ss.href;
+        var i = sheets.length;
+        while (i--) {
+          if (sheets[i].href === resolvedHref) {
+            return cb();
+          }
+        }
+        setTimeout(function () {
+          onloadcssdefined(cb);
+        });
+      };
+      function loadCB() {
+        if (ss.addEventListener) {
+          ss.removeEventListener("load", loadCB);
+        }
+        ss.media = media || "all";
+      }
+      if (ss.addEventListener) {
+        ss.addEventListener("load", loadCB);
+      }
+      ss.onloadcssdefined = onloadcssdefined;
+      onloadcssdefined(loadCB);
+      return ss;
+    },
+
+    // 从 butterfly 和 volantis 获得灵感
+    loadScript: (src, opt) => new Promise((resolve, reject) => {
+      var script = document.createElement('script');
+      script.src = src;
+      if (opt) {
+        for (let key of Object.keys(opt)) {
+          script[key] = opt[key]
+        }
+      } else {
+        // 默认异步，如果需要同步，第二个参数传入 {} 即可
+        script.async = true
+      }
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    }),
+
+    // https://github.com/jerryc127/hexo-theme-butterfly
+    jQuery: (fn) => {
+      if (typeof jQuery === 'undefined') {
+        stellar.loadScript(stellar.plugins.jQuery).then(fn)
+      } else {
+        fn()
+      }
+    }
+  };
+  stellar.github = 'https://github.com/xaoxuu/hexo-theme-stellar/tree/1.6.1';
+  stellar.config = {
+    date_suffix: {
+      just: '刚刚',
+      min: '分钟前',
+      hour: '小时前',
+      day: '天前',
+      month: '个月前',
+    },
+  };
+
+  // required plugins (only load if needs)
+  stellar.plugins = {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js',
+    sitesjs: '/js/plugins/sites.js',
+    friendsjs: '/js/plugins/friends.js',
+  };
+
+  // optional plugins
+  if ('true' == 'true') {
+    stellar.plugins.lazyload = Object.assign({"enable":true,"js":"https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.3.1/dist/lazyload.min.js","transition":"blur"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.swiper = Object.assign({"enable":true,"css":"https://unpkg.com/swiper@6/swiper-bundle.min.css","js":"https://unpkg.com/swiper@6/swiper-bundle.min.js"});
+  }
+  if ('' == 'true') {
+    stellar.plugins.scrollreveal = Object.assign({"enable":null,"js":"https://cdn.jsdelivr.net/npm/scrollreveal@4.0.9/dist/scrollreveal.min.js","distance":"8px","duration":500,"interval":100,"scale":1});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.preload = Object.assign({"enable":true,"service":"flying_pages","instant_page":"https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@4.1.2/js/instant_page.js","flying_pages":"https://cdn.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js"});
+  }
+</script>
+
+<!-- required -->
+
+  
+<script src="/js/main.js" async></script>
+
+
+
+<!-- optional -->
+
+
+
+<!-- inject -->
+
+
+  </div>
+</body>
+</html>
